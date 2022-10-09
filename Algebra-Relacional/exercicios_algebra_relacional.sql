@@ -69,3 +69,26 @@ from (select * from Pecas where cor = 'verde') as p
 join Catalogo on p.id_peca = Catalogo.id_peca;
 
 d)
+Encontre os id-forns dos fornecedores que fornecem todas as peças.
+
+(π id_forn, id_peca Catalogo) ÷ (π id_peca Pecas)
+
+e)
+
+g) 
+
+Encontre os id-forns dos fornecedores que fornecem todas as peças vermelhas ou fornecem todas as peças verdes.
+
+h)
+
+Encontre os pares de id-forns tais que o fornecedor com o primeiro id-forn cobre mais por alguma peça do que o fornecedor com o segundo id-forn
+
+σ id_forn1 ≠ id_forn2
+π id_forn1,id_forn2 
+(
+	σ custo1>custo2 
+	((ρ custo1←custo,id_forn1←id_forn (π custo,id_forn (Fornecedores ⨝ Catalogo))) 
+	⨯ 
+	(ρ custo2←custo,id_forn2←id_forn (π custo,id_forn (Fornecedores ⨝ Catalogo)))
+	)
+)
